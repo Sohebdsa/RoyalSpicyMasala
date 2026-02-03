@@ -36,7 +36,7 @@ const ScrollHero = () => {
       for (let i = 0; i < availableFrames.length; i++) {
         const img = new Image();
         const frameNumber = String(availableFrames[i]).padStart(3, '0');
-        img.src = `/Heroimg/ezgif-frame-${frameNumber}.jpg`;
+        img.src = `/Heroimg/frame2/ezgif-frame-${frameNumber}.png`;
 
         const loadPromise = new Promise((resolve, reject) => {
           img.onload = () => resolve(img);
@@ -151,30 +151,31 @@ const ScrollHero = () => {
             </div>
           )}
 
-          {/* <div className="hero-content">
+          <div className="hero-content">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
             >
-              Scroll to Explore
+              Royal Spicy Masala
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.7 }}
             >
-              Experience the magic of scroll-driven animation
+              Grains of Truth, Spices of Life
             </motion.p>
-          </div> */}
+          </div>
 
-          {imagesLoaded && (
+          {/* {imagesLoaded && (
             <div className="scroll-indicator">
               <div className="scroll-progress">
                 Frame {currentFrame + 1} / {totalFrames}
               </div>
             </div>
-          )}
+          )} */}
+
         </div>
       </div>
 

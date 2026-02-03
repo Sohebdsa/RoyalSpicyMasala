@@ -1,0 +1,55 @@
+.simple-footer {
+    background-color: var(--deep-charcoal);
+    /* #1a1a1a */
+    padding: 20px 0;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    /* Subtle gold border */
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* For mobile responsiveness */
+    gap: 10px;
+}
+
+.simple-footer p {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.simple-footer p span {
+    color: var(--primary-gold);
+    /* Gold color for brand name */
+    font-weight: 600;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-gold);
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}

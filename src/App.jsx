@@ -1,10 +1,10 @@
 import Navbar from './components/Navbar'
 import ScrollHero from './components/ScrollHero'
-import ProductCard from './components/ProductCard'
 import ProductSection from './components/Productsection'
 import ServiceSection from './components/ServiceSection'
-import ContactSection from './components/Contactsection'
 import AboutSection from './components/AboutSection'
+import ContactSection from './components/ContactSection'
+import Footer from './components/Footer'
 
 import './App.css'
 
@@ -90,6 +90,9 @@ function App() {
             <Navbar />
             <ScrollHero />
 
+            {/* About Section */}
+            <AboutSection />
+
             {/* Products Section */}
             <ProductSection />
 
@@ -99,8 +102,8 @@ function App() {
             {/* Contact Section */}
             <ContactSection />
 
-            {/* About Section */}
-            <AboutSection />
+            {/* Footer */}
+            <Footer />
         </div>
     )
 }

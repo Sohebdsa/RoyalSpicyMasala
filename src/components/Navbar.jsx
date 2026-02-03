@@ -4,12 +4,18 @@ import './Navbar.css';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            const scrollY = window.scrollY;
+            const heroHeight = window.innerHeight; // Hero section is 100vh
+
+            setIsScrolled(scrollY > 50);
+            // Hide when scrolled 100% below hero section (i.e., 2x viewport height)
+            setIsHidden(scrollY > heroHeight * 2);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -41,10 +47,10 @@ const Navbar = () => {
 
     return (
         <motion.nav
-            className={`navbar ${isScrolled ? 'scrolled' : ''}`}
+            className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hidden' : ''}`}
             initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+            animate={{ y: isHidden ? -100 : 0 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
         >
             <div className="navbar-container">
                 {/* Logo */}

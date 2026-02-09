@@ -296,12 +296,10 @@
   gap: 15px;
   z-index: 20;
   padding-bottom: 20px;
+  /* background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); */
 }
 
 .slider-play-btn {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
   background: rgba(212, 175, 55, 0.8);
   border: none;
   width: 44px;
@@ -314,7 +312,6 @@
   align-items: center;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  z-index: 21;
 }
 
 .slider-dots {

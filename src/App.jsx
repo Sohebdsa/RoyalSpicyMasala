@@ -7,6 +7,8 @@ import ContactSection from "./components/Contactsection";
 import Footer from './components/Footer'
 import LocationSection from './components/LocationSection'
 
+import { SpeedInsights } from "@vercel/speed-insights/react"
+
 import './App.css'
 
 function App() {
@@ -107,6 +109,9 @@ function App() {
 
             {/* Footer */}
             <Footer />
+
+            {/* Speed Insights Tracking */}
+            <SpeedInsights />
         </div>
     )
 }

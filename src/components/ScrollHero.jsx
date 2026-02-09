@@ -405,7 +405,7 @@ const ScrollHero = () => {
 
             {/* Content Overlay Layer */}
             <div className="scroll-content-layer">
-              {/* ... Existing Text Animation Code commented out in original ... */}
+
             </div>
 
             {/* Play Button - Plays animation once from start */}

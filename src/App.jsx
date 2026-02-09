@@ -88,7 +88,7 @@ function App() {
 
     return (
         <div className="app">
-
+            <Navbar />
             <ScrollHero />
             {/* Products Section */}
             <ProductSection products={products} />

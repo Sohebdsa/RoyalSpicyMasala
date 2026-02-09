@@ -320,7 +320,7 @@ const ScrollHero = () => {
           <div className="mobile-slider-container">
             <img
               // src={sliderImages[currentSlide]}
-              src='/Heroimg/frame2/ezgif-frame-096.png'
+              src='https://res.cloudinary.com/dmynls1ot/image/upload/v1770628150/ezgif-frame-169_huajkq.png'
               alt={`Slide ${currentSlide + 1}`}
               className="mobile-slider-image"
             />

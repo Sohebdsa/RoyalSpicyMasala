@@ -17,11 +17,11 @@ const ScrollHero = () => {
   const [isSliderPlaying, setIsSliderPlaying] = useState(true);
 
   const sliderImages = [
-    '/Heroimg/frame2/ezgif-frame-001.png',
-    '/Heroimg/frame2/ezgif-frame-048.png',
-    '/Heroimg/frame2/ezgif-frame-096.png',
-    '/Heroimg/frame2/ezgif-frame-144.png',
-    '/Heroimg/frame2/ezgif-frame-190.png'
+    '/webpHero/ezgif-frame-001.webp',
+    '/webpHero/ezgif-frame-048.webp',
+    '/webpHero/ezgif-frame-096.webp',
+    '/webpHero/ezgif-frame-144.webp',
+    '/webpHero/ezgif-frame-190.webp'
   ];
 
   // Animation control states
@@ -46,6 +46,20 @@ const ScrollHero = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Preload mobile slider images
+  useEffect(() => {
+    if (isMobile) {
+      sliderImages.forEach((src) => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.type = 'image/webp';
+        link.href = src;
+        document.head.appendChild(link);
+      });
+    }
+  }, [isMobile]);
 
   // Mobile Slider Auto-play
   useEffect(() => {
@@ -82,46 +96,79 @@ const ScrollHero = () => {
     currentFrameRef.current = currentFrame;
   }, [currentFrame]);
 
-  // Preload all images (Only on desktop)
+  // Progressive image loading with priority (Only on desktop)
   useEffect(() => {
     if (isMobile) {
       setImagesLoaded(true); // Skip loading large sequence on mobile
       return;
     }
 
-    // ... (Existing load logic) ...
     const loadImages = async () => {
-      const imageArray = [];
-      const loadPromises = [];
+      const imageArray = new Array(totalFrames);
 
-      for (let i = 1; i <= totalFrames; i++) {
-        const img = new Image();
-        const frameNumber = String(i).padStart(3, '0');
-        img.src = `/Heroimg/frame2/ezgif-frame-${frameNumber}.png`;
+      // Define key frames to load first (first, last, and evenly distributed frames)
+      const keyFrames = [
+        1, // First frame
+        Math.floor(totalFrames * 0.25), // 25%
+        Math.floor(totalFrames * 0.5),  // 50%
+        Math.floor(totalFrames * 0.75), // 75%
+        totalFrames // Last frame
+      ];
 
-        const loadPromise = new Promise((resolve) => {
-          img.onload = () => resolve(img);
+      // Load key frames first for immediate playback
+      const loadFrame = (frameIndex) => {
+        return new Promise((resolve) => {
+          const img = new Image();
+          const frameNumber = String(frameIndex).padStart(3, '0');
+
+          // Add decoding optimization
+          img.decoding = 'async';
+          img.src = `/webpHero/ezgif-frame-${frameNumber}.webp`;
+
+          img.onload = () => {
+            imageArray[frameIndex - 1] = img;
+            resolve(img);
+          };
           img.onerror = (error) => {
             console.error(`Failed to load frame ${frameNumber}:`, error);
             resolve(null);
           };
         });
-
-        imageArray.push(img);
-        loadPromises.push(loadPromise);
-      }
+      };
 
       try {
-        await Promise.all(loadPromises);
-        setImages(imageArray);
+        // Phase 1: Load key frames first
+        await Promise.all(keyFrames.map(loadFrame));
+
+        // Set images loaded early so animation can start
+        setImages([...imageArray]);
         setImagesLoaded(true);
+
+        // Phase 2: Load remaining frames in background
+        const remainingFrames = [];
+        for (let i = 1; i <= totalFrames; i++) {
+          if (!keyFrames.includes(i)) {
+            remainingFrames.push(i);
+          }
+        }
+
+        // Load in batches to avoid overwhelming the browser
+        const batchSize = 10;
+        for (let i = 0; i < remainingFrames.length; i += batchSize) {
+          const batch = remainingFrames.slice(i, i + batchSize);
+          await Promise.all(batch.map(loadFrame));
+
+          // Update images array after each batch
+          setImages([...imageArray]);
+        }
+
       } catch (error) {
         console.error('Error loading images:', error);
       }
     };
 
     loadImages();
-  }, [isMobile]);
+  }, [isMobile, totalFrames]);
 
   // ... (Rest of animation logic kept mostly same, but guarded by !isMobile check effectively via rendering) ...
 
@@ -319,10 +366,11 @@ const ScrollHero = () => {
           // --- Mobile Slider View ---
           <div className="mobile-slider-container">
             <img
-              // src={sliderImages[currentSlide]}
-              src='https://res.cloudinary.com/dmynls1ot/image/upload/v1770628150/ezgif-frame-169_huajkq.png'
+              src={sliderImages[currentSlide]}
               alt={`Slide ${currentSlide + 1}`}
               className="mobile-slider-image"
+              loading="eager"
+              decoding="async"
             />
 
             <div className="mobile-slider-controls">

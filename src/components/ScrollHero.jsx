@@ -319,15 +319,16 @@ const ScrollHero = () => {
           // --- Mobile Slider View ---
           <div className="mobile-slider-container">
             <img
-              src={sliderImages[currentSlide]}
+              // src={sliderImages[currentSlide]}
+              src='/Heroimg/frame2/ezgif-frame-096.png'
               alt={`Slide ${currentSlide + 1}`}
               className="mobile-slider-image"
             />
 
             <div className="mobile-slider-controls">
-              <button className="slider-play-btn" onClick={handleSliderPlayPause}>
+              {/* <button className="slider-play-btn" onClick={handleSliderPlayPause}>
                 {isSliderPlaying ? '❚❚' : '▶'}
-              </button>
+              </button> */}
 
               <div className="slider-dots">
                 {sliderImages.map((_, index) => (

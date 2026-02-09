@@ -57,91 +57,142 @@ Services Section Styles .services-section {
 }
 
 /* Service Cards */
+/* Service Cards Grid */
 .services-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2xl);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
     margin-bottom: var(--spacing-3xl);
+    perspective: 1000px;
 }
 
+/* Flip Card Container */
 .service-card {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: var(--spacing-base);
-    background: var(--bg-light);
+    background-color: transparent;
+    height: 400px;
+    /* Fixed height for flip cards */
+    border-radius: var(--radius-lg);
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+/* Inner Container - needed for flip effect */
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Do the flip on hover */
+.service-card:hover .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back common styles */
+.service-card-front,
+.service-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
 }
 
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 50px rgba(204, 85, 0, 0.15);
+/* Front Side */
+.service-card-front {
+    background-color: var(--bg-white);
+    color: black;
 }
 
-.service-card-reverse {
-    grid-template-columns: 50% 50%;
-    direction: rtl;
-}
-
-.service-card-reverse .service-content {
-    direction: ltr;
-}
-
-.service-image {
-    position: relative;
-    width: 80%;
-    height: 100%;
-    max-height: 350px;
-    overflow: hidden;
-}
-
-.service-image img {
+.service-card-front img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-slow);
 }
 
-.service-card:hover .service-image img {
-    transform: scale(1.08);
+.card-front-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem 1rem 1rem;
+    color: white;
 }
 
+.card-front-overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
 
-.service-content {
-    padding: var(--spacing-xl);
+.tap-hint {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Back Side */
+.service-card-back {
+    background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+    color: var(--text-primary);
+    transform: rotateY(180deg);
+    padding: var(--spacing-lg);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    border: 2px solid var(--classic-gold);
 }
 
-.service-content h3 {
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-md);
+.service-card-back h3 {
+    color: #cc5500;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-.service-content p {
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
-    color: var(--text-secondary);
-    line-height: 1.8;
-    margin-bottom: var(--spacing-lg);
+.service-card-back p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: #555;
 }
 
 .service-features {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left;
+    width: 100%;
 }
 
 .service-features li {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
-    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.service-features li:last-child {
+    border-bottom: none;
+}
+
+.feature-check {
+    color: #cc5500;
+    font-weight: bold;
 }
 
 .feature-check {
@@ -246,6 +297,11 @@ Services Section Styles .services-section {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.cta-button a {
+    color: inherit;
+    text-decoration: none;
+}
+
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
@@ -258,30 +314,17 @@ Services Section Styles .services-section {
         max-width: 100%;
         padding: var(--spacing-2xl) var(--spacing-md);
     }
-}
 
-@media (max-width: 968px) {
-
-    .service-card,
-    .service-card-reverse {
-        grid-template-columns: 1fr;
-        direction: ltr;
-    }
-
-    .service-image {
-        max-height: 300px;
-    }
-
-    .features-grid {
+    .services-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .services-hero-content h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
     }
 }
 
 @media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     .services-content-wrapper {
         padding: var(--spacing-xl) var(--spacing-sm);
     }

@@ -56,25 +56,28 @@ export default function ServiceSection() {
 
                 {/* Service Cards */}
                 <div className="services-grid">
-                    {services.map((service, index) => (
-                        <div
-                            key={service.id}
-                            className={`service-card ${index % 2 === 1 ? 'service-card-reverse' : ''}`}
-                        >
-                            <div className="service-image">
-                                <img src={service.image} alt={service.title} />
-                            </div>
-                            <div className="service-content">
-                                <h3>{service.title}</h3>
-                                <p>{service.description}</p>
-                                <ul className="service-features">
-                                    {service.features.map((feature, idx) => (
-                                        <li key={idx}>
-                                            <span className="feature-check">✓</span>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
+                    {services.map((service) => (
+                        <div key={service.id} className="service-card">
+                            <div className="service-card-inner">
+                                <div className="service-card-front">
+                                    <img src={service.image} alt={service.title} />
+                                    <div className="card-front-overlay">
+                                        <h3>{service.title}</h3>
+                                        <span className="tap-hint">Tap to see details</span>
+                                    </div>
+                                </div>
+                                <div className="service-card-back">
+                                    <h3>{service.title}</h3>
+                                    <p>{service.description}</p>
+                                    <ul className="service-features">
+                                        {service.features.map((feature, idx) => (
+                                            <li key={idx}>
+                                                <span className="feature-check">✓</span>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -113,7 +116,7 @@ export default function ServiceSection() {
                     <p>
                         Join thousands of satisfied clients who trust Royal Spicy Masala for their spice needs.
                     </p>
-                    <button className="cta-button">Get Started Today</button>
+                    <button className="cta-button"><a href="#contact">Get Started Today</a></button>
                 </div>
             </div>
         </section>

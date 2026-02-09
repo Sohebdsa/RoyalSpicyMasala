@@ -3,7 +3,7 @@ import ScrollHero from './components/ScrollHero'
 import ProductSection from './components/Productsection'
 import ServiceSection from './components/ServiceSection'
 import AboutSection from './components/AboutSection'
-import ContactSection from "./components/ContactSection";
+import ContactSection from "./components/Contactsection";
 import Footer from './components/Footer'
 import LocationSection from './components/LocationSection'
 

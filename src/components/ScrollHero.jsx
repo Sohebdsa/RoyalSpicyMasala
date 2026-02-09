@@ -341,7 +341,8 @@ const ScrollHero = () => {
             />
             {/* Brand Overlay */}
             <div className="mobile-hero-brand">
-              <h1 className="mobile-brand-heading">Royal Spicy Masala</h1>
+              <h1 className="mobile-brand-heading">Royal Spicy </h1>
+              <h1 className="mobile-brand-heading-2">Masala</h1>
               <p className="mobile-brand-tagline">Authentic Flavors, Premium Quality</p>
             </div>
           </div>

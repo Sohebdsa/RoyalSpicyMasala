@@ -232,6 +232,8 @@
 
     .mobile-menu-button {
         display: flex;
+        margin-left: auto;
+        /* Push hamburger to the right */
     }
 
     .mobile-menu {
@@ -240,13 +242,15 @@
 
     .navbar-container {
         padding: 0 1.5rem;
-        justify-content: space-between;
-        /* Brand left, hamburger right */
+        justify-content: flex-end;
+        /* Align hamburger to the right */
     }
 
     /* Show brand on mobile */
     .navbar-brand {
         display: block;
+        margin-right: auto;
+        /* Push brand to the left */
     }
 
     .navbar-logo {

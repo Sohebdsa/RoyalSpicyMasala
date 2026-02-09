@@ -30,7 +30,33 @@
     align-items: center;
 }
 
-/* Logo */
+/* Brand Section */
+.navbar-brand {
+    display: none;
+    /* Hidden on desktop, shown on mobile */
+}
+
+.brand-heading {
+    font-size: 1.25rem;
+    font-family: 'Anton', sans-serif;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.brand-tagline {
+    font-size: 0.75rem;
+    color: #d4af37;
+    margin: 0;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
+/* Logo (Legacy - keeping for desktop if needed) */
 .navbar-logo {
     font-size: 40px;
     font-family: Anton;
@@ -131,8 +157,8 @@
 .mobile-menu-button {
     display: none;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
     background: transparent;
     border: none;
@@ -214,6 +240,13 @@
 
     .navbar-container {
         padding: 0 1.5rem;
+        justify-content: space-between;
+        /* Brand left, hamburger right */
+    }
+
+    /* Show brand on mobile */
+    .navbar-brand {
+        display: block;
     }
 
     .navbar-logo {
@@ -232,6 +265,14 @@
 
     .navbar-container {
         padding: 0 1rem;
+    }
+
+    .brand-heading {
+        font-size: 1.1rem;
+    }
+
+    .brand-tagline {
+        font-size: 0.65rem;
     }
 
     .navbar-logo {

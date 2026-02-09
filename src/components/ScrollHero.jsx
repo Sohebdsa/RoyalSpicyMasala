@@ -339,6 +339,11 @@ const ScrollHero = () => {
               className="mobile-hero-image"
               loading="eager"
             />
+            {/* Brand Overlay */}
+            <div className="mobile-hero-brand">
+              <h1 className="mobile-brand-heading">Royal Spicy Masala</h1>
+              <p className="mobile-brand-tagline">Authentic Flavors, Premium Quality</p>
+            </div>
           </div>
         ) : (
           // Desktop View - Canvas Animation

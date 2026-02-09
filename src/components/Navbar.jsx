@@ -39,17 +39,6 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: 'easeOut' }}
         >
             <div className="navbar-container">
-                {/* Logo */}
-                {/* <motion.a
-                    href="#home"
-                    className="navbar-logo"
-                    onClick={(e) => handleNavClick(e, '#home')}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                >
-                    Royal Spicy Masala
-                </motion.a> */}
-
                 {/* Desktop Navigation */}
                 <ul className="navbar-menu">
                     {navItems.map((item, index) => (
@@ -64,7 +53,7 @@ const Navbar = () => {
                     ))}
                 </ul>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Menu Button - Right Side */}
                 <button
                     className={`mobile-menu-button ${isMobileMenuOpen ? 'open' : ''}`}
                     onClick={toggleMobileMenu}

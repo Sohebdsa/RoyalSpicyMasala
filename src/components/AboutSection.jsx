@@ -1,9 +1,10 @@
 import './AboutSection.css'
-import InfiniteSlider from './common/infiniteSlider'
+import InfiniteSlider from '../common/infiniteSlider'
 
 export default function AboutSection() {
     return (
         <section className="about-section" id="about">
+            <InfiniteSlider />
             {/* Hero Section */}
             {/* <div className="about-hero">
                 <div className="about-hero-overlay">
@@ -15,11 +16,10 @@ export default function AboutSection() {
                     </div>
                 </div>
             </div> */}
-            <InfiniteSlider />
             {/* Main Content */}
             <div className="about-content-wrapper">
                 {/* Philosophy Section */}
-                {/* <div className="about-philosophy">
+                <div className="about-philosophy">
                     <h2>Building Trust Through Scale & Philosophy</h2>
                     <p className="about-lead">
                         At Royal Spicy Masala, we bridge the gap between farm-fresh quality and affordable pricing.
@@ -30,7 +30,7 @@ export default function AboutSection() {
                         With a robust network featuring <strong>250+ top-tier brands</strong>, we ensure that every
                         kitchen—from households to commercial restaurants—has access to the gold standard of ingredients.
                     </p>
-                </div> */}
+                </div>
 
                 {/* Statistics Grid */}
                 <div className="about-stats">

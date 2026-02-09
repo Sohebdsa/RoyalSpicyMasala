@@ -5,6 +5,7 @@ import ServiceSection from './components/ServiceSection'
 import AboutSection from './components/AboutSection'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
+import LocationSection from './components/LocationSection'
 
 import './App.css'
 
@@ -13,9 +14,9 @@ function App() {
     const products = [
         {
             id: 1,
-            name: "Premium Garam Masala",
-            description: "Authentic blend of aromatic spices for rich, flavorful curries",
-            image: "https://images.unsplash.com/photo-1596040033229-a0b4e4d4e3d0?w=500&h=500&fit=crop",
+            name: "Premium Almonds",
+            description: "Premium quality almonds",
+            image: "/productsImg/almonds.png",
             weight: "100g",
             price: 299,
             originalPrice: 399,
@@ -27,7 +28,7 @@ function App() {
             id: 2,
             name: "Kashmiri Red Chili",
             description: "Vibrant color and mild heat, perfect for authentic Indian dishes",
-            image: "https://images.unsplash.com/photo-1599909533730-f9b3e5d0d0e5?w=500&h=500&fit=crop",
+            image: "/productsImg/kasmiriMirchi.png",
             weight: "200g",
             price: 249,
             originalPrice: 329,
@@ -39,7 +40,7 @@ function App() {
             id: 3,
             name: "Turmeric Powder",
             description: "Pure, organic turmeric with anti-inflammatory properties",
-            image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=500&h=500&fit=crop",
+            image: "/productsImg/haldi.png",
             weight: "150g",
             price: 199,
             originalPrice: null,
@@ -51,7 +52,7 @@ function App() {
             id: 4,
             name: "Cumin Seeds",
             description: "Aromatic whole cumin seeds for tempering and flavoring",
-            image: "https://images.unsplash.com/photo-1599909533730-f9b3e5d0d0e5?w=500&h=500&fit=crop",
+            image: "/productsImg/jeera.png",
             weight: "100g",
             price: 149,
             originalPrice: null,
@@ -63,7 +64,7 @@ function App() {
             id: 5,
             name: "Biryani Masala",
             description: "Special blend for authentic, restaurant-style biryani",
-            image: "https://images.unsplash.com/photo-1596040033229-a0b4e4d4e3d0?w=500&h=500&fit=crop",
+            image: "/productsImg/biryanimasala.png",
             weight: "100g",
             price: 279,
             originalPrice: 349,
@@ -75,7 +76,7 @@ function App() {
             id: 6,
             name: "Coriander Powder",
             description: "Freshly ground coriander for earthy, citrusy flavor",
-            image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?w=500&h=500&fit=crop",
+            image: "/productsImg/coriander_powder.png",
             weight: "200g",
             price: 179,
             originalPrice: null,
@@ -87,17 +88,19 @@ function App() {
 
     return (
         <div className="app">
-            <Navbar />
+
             <ScrollHero />
+            {/* Products Section */}
+            <ProductSection products={products} />
+
+            {/* Services Section */}
+            <ServiceSection />
 
             {/* About Section */}
             <AboutSection />
 
-            {/* Products Section */}
-            <ProductSection />
-
-            {/* Services Section */}
-            <ServiceSection />
+            {/* Location Section */}
+            <LocationSection />
 
             {/* Contact Section */}
             <ContactSection />

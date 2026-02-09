@@ -1,0 +1,46 @@
+/* Slider Container */
+.rbb-slick-carousel {
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* Viewport */
+.rbb-slick-carousel .slick-list {
+    overflow: hidden;
+    width: 100%;
+}
+
+/*  Track Moving */
+.rbb-slick-carousel .slick-track {
+    display: flex !important;
+    align-items: center;
+    width: max-content;
+    animation: rbb-scroll 30s linear infinite;
+    will-change: transform;
+}
+
+/* Individual Logo Boxes */
+.logo-item {
+    width: 250px;
+    margin: 0 20px;
+    padding: 0px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.logo-item img {
+    width: 100%;
+    height: 60px;
+    object-fit: contain;
+}
+
+/*  Keyframe Animation */
+@keyframes rbb-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}

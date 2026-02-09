@@ -78,7 +78,7 @@ export default function Contactsection() {
         const whatsappMessage = `*New Inquiry from Royal Spicy Masala Website*%0A%0A*Name:* ${formData.name}%0A*Phone:* ${formData.phone}%0A*Purpose:* ${purposeLabel}%0A*Message:* ${formData.message}`;
 
         // WhatsApp number (replace with actual business number)
-        const whatsappNumber = '919876543210'; // Replace with your WhatsApp business number
+        const whatsappNumber = '9702713157'; // Replace with your WhatsApp business number
 
         // Open WhatsApp
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
@@ -122,7 +122,7 @@ export default function Contactsection() {
                                 <div className="info-icon">📧</div>
                                 <div className="info-content">
                                     <h4>Email</h4>
-                                    <p>info@royalspicymasala.com</p>
+                                    <p>royalspicymasala786@gmail.com</p>
                                 </div>
                             </div>
 
@@ -130,7 +130,7 @@ export default function Contactsection() {
                                 <div className="info-icon">📞</div>
                                 <div className="info-content">
                                     <h4>Phone</h4>
-                                    <p>+91 1234 567 890</p>
+                                    <p>+91 9702713157</p>
                                 </div>
                             </div>
 
@@ -138,7 +138,13 @@ export default function Contactsection() {
                                 <div className="info-icon">📍</div>
                                 <div className="info-content">
                                     <h4>Location</h4>
-                                    <p>Mumbai, Maharashtra, India</p>
+                                    <p>Shop no 1, AASHIYANA SRA SOCIETY,
+
+                                        OPP Subway, Navneeth Colony,
+
+                                        S V Road, behind millionaire bldg
+
+                                        Mumbai, Maharashtra 400058</p>
                                 </div>
                             </div>
 

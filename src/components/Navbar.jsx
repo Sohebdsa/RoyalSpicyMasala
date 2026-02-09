@@ -7,20 +7,6 @@ const Navbar = () => {
     const [isHidden, setIsHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    // Handle scroll effect
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollY = window.scrollY;
-            const heroHeight = window.innerHeight; // Hero section is 100vh
-
-            setIsScrolled(scrollY > 50);
-            // Hide when scrolled 100% below hero section (i.e., 2x viewport height)
-            setIsHidden(scrollY > heroHeight * 2);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     const navItems = [
         { name: 'Home', href: '#home' },
@@ -54,7 +40,7 @@ const Navbar = () => {
         >
             <div className="navbar-container">
                 {/* Logo */}
-                <motion.a
+                {/* <motion.a
                     href="#home"
                     className="navbar-logo"
                     onClick={(e) => handleNavClick(e, '#home')}
@@ -62,25 +48,19 @@ const Navbar = () => {
                     whileTap={{ scale: 0.95 }}
                 >
                     Royal Spicy Masala
-                </motion.a>
+                </motion.a> */}
 
                 {/* Desktop Navigation */}
                 <ul className="navbar-menu">
                     {navItems.map((item, index) => (
-                        <motion.li
-                            key={item.name}
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                        <a index={index}
+                            href={item.href}
+                            onClick={(e) => handleNavClick(e, item.href)}
+                            className="navbar-link"
                         >
-                            <a
-                                href={item.href}
-                                onClick={(e) => handleNavClick(e, item.href)}
-                                className="navbar-link"
-                            >
-                                {item.name}
-                            </a>
-                        </motion.li>
+                            {item.name}
+                        </a>
+
                     ))}
                 </ul>
 

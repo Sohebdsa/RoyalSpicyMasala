@@ -164,38 +164,72 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .product-image {
-        height: 220px;
+        height: 200px;
     }
 
     .product-info {
-        padding: 1.25rem;
+        padding: var(--spacing-md);
     }
 
     .product-name {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .product-description {
+        font-size: 0.85rem;
+        margin-bottom: var(--spacing-sm);
     }
 
     .product-footer {
         flex-direction: column;
         align-items: stretch;
+        gap: var(--spacing-sm);
     }
 
     .add-to-cart-btn {
         width: 100%;
         text-align: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .current-price {
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 480px) {
     .product-image {
-        height: 200px;
+        height: 180px;
     }
 
     .product-info {
-        padding: 1rem;
+        padding: var(--spacing-sm);
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .product-description {
+        font-size: 0.8rem;
     }
 
     .current-price {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+    }
+
+    .add-to-cart-btn {
+        padding: 0.65rem 1.25rem;
+        font-size: 0.85rem;
+    }
+
+    .detail-label {
+        font-size: 0.7rem;
+    }
+
+    .detail-value {
+        font-size: 0.9rem;
     }
 }

@@ -1,6 +1,8 @@
-export default function ProductSection() {
-    return
-    <section className="content-section" id="products">
+import ProductCard from './ProductCard';
+import './ProductSection.css';
+
+export default function ProductSection({ products }) {
+    return <section className="content-section" id="products">
         <div className="content-wrapper">
             <h2>Our Products</h2>
             <p>
@@ -8,11 +10,10 @@ export default function ProductSection() {
                 crafted with the finest ingredients to bring authentic flavors to your kitchen.
             </p>
             <div className="products-grid">
-                {products.map((product, index) => (
+                {products && products.map((product, index) => (
                     <ProductCard key={product.id} product={product} index={index} />
                 ))}
             </div>
         </div>
     </section>
-
 }

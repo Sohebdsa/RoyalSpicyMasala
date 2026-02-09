@@ -4,31 +4,31 @@ export default function ServiceSection() {
     const services = [
         {
             id: 1,
-            title: "Wholesale Distribution",
-            description: "Premier bulk supply solutions for restaurants, hotels, and commercial kitchens. We handle large-scale orders with competitive pricing and consistent quality.",
-            image: "/OurServicesImg/wholesale_distribution.png",
-            features: ["Bulk pricing", "Minimum order flexibility", "B2B partnerships"]
+            title: "DryFruits",
+            description: "Premium-grade dry fruits sourced from trusted farms and suppliers, ideal for retail, gifting, and culinary use.",
+            image: "/OurServicesImg/dryfruits.jpeg",
+            features: [" Almonds, Cashews, Pistachios", "Raisins, Dates, Figs", "Walnuts, Apricots, Mixed Dry Fruits"]
         },
         {
             id: 2,
-            title: "Quality Assurance",
-            description: "Rigorous testing and certification processes ensure every product meets international quality standards. Our lab-tested spices guarantee purity and authenticity.",
-            image: "/OurServicesImg/quality_assurance.png",
-            features: ["Lab testing", "Organic certification", "Purity guarantee"]
+            title: "Spices & Masala",
+            description: "Authentic, lab-tested spices and custom masala blends that elevate flavor and meet international quality standards.",
+            image: "/OurServicesImg/masla.jpeg",
+            features: [" Whole & ground spices (Haldi, Jeera, Mirchi)", "Custom masala blends", "Purity guarantee"]
         },
         {
             id: 3,
-            title: "Custom Packaging",
-            description: "Tailored packaging solutions for your brand. From private labeling to custom blends, we help you create unique products that stand out in the market.",
-            image: "/OurServicesImg/custom_packaging.png",
-            features: ["Private labeling", "Custom blends", "Brand development"]
+            title: "Oils & Ghee",
+            description: "Cold-pressed oils and pure ghee for traditional cooking and modern health-conscious kitchens.",
+            image: "/OurServicesImg/oils.jpeg",
+            features: ["Mustard, Groundnut, Coconut oils", "Pure ghee", "Nationwide coverage", "Available in retail and bulk formats"]
         },
         {
             id: 4,
-            title: "Fast Delivery",
-            description: "Efficient logistics network ensuring timely delivery across the country. Track your orders in real-time and receive products in perfect condition.",
-            image: "/OurServicesImg/logistics_delivery.png",
-            features: ["24-48 hour delivery", "Real-time tracking", "Nationwide coverage"]
+            title: "Grains & Rice",
+            description: "Premium-grade grains and rice sourced from trusted farms and suppliers, ideal for retail, gifting, and culinary use.",
+            image: "/OurServicesImg/grains.jpeg",
+            features: ["Basmati, Sona Masoori, Idli Rice", "Wheat, Pulses, Millets", "Custom packaging options"]
         }
     ];
 
@@ -37,9 +37,9 @@ export default function ServiceSection() {
             {/* Hero Section */}
             <div className="services-hero">
                 <div className="services-hero-content">
-                    <h1>Our Services</h1>
+                    <h1>Our Products Categories</h1>
                     <p className="services-hero-subtitle">
-                        Comprehensive solutions tailored to your spice and grain needs
+                        We provide a wide range of products to meet your needs
                     </p>
                 </div>
             </div>
@@ -50,8 +50,7 @@ export default function ServiceSection() {
                 <div className="services-intro">
                     <h2>What We Offer</h2>
                     <p>
-                        From wholesale distribution to custom packaging, we provide end-to-end solutions
-                        for businesses and individuals seeking premium quality spices, grains, and dry fruits.
+                        We provide a wide range of products to meet your needs
                     </p>
                 </div>
 
@@ -83,11 +82,11 @@ export default function ServiceSection() {
 
                 {/* Additional Features */}
                 <div className="services-features">
-                    <h2>Why Choose Our Services</h2>
+                    <h2>Why Choose Our Products</h2>
                     <div className="features-grid">
                         <div className="feature-item">
                             <div className="feature-icon">🌟</div>
-                            <h4>250+ Brands</h4>
+                            <h4>Wide Range of Products</h4>
                             <p>Access to premium brands and products</p>
                         </div>
                         <div className="feature-item">

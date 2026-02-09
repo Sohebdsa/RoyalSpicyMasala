@@ -8,7 +8,7 @@
 .about-hero {
     position: relative;
     height: 60vh;
-    min-height: 500px;
+    min-height: 100px;
     background-image: url('/spices_hero_background.png');
     background-size: cover;
     background-position: center;
@@ -54,7 +54,7 @@
 
 /* Content Wrapper */
 .about-content-wrapper {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: var(--spacing-xl) var(--spacing-lg);
 }
@@ -102,7 +102,7 @@
 /* Statistics Grid */
 .about-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 4fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-3xl);
 }
@@ -249,10 +249,17 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .about-content-wrapper {
+        max-width: 100%;
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+}
+
 @media (max-width: 968px) {
     .about-hero {
-        height: 50vh;
-        min-height: 400px;
+        height: 35vh;
+        min-height: 300px;
         background-attachment: scroll;
     }
 
@@ -268,40 +275,110 @@
     }
 
     .value-image {
-        min-height: 250px;
+        min-height: 220px;
+    }
+
+    .about-philosophy h2 {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
     }
 }
 
 @media (max-width: 768px) {
     .about-content-wrapper {
-        padding: var(--spacing-xl) var(--spacing-md);
+        padding: var(--spacing-lg) var(--spacing-sm);
     }
 
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
     }
 
     .stat-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
     }
 
     .about-mission {
-        padding: var(--spacing-xl);
+        padding: var(--spacing-lg);
+    }
+
+    .about-philosophy {
+        margin-bottom: var(--spacing-xl);
+    }
+
+    .about-values {
+        gap: var(--spacing-lg);
     }
 }
 
 @media (max-width: 480px) {
     .about-hero {
-        height: 40vh;
-        min-height: 350px;
+        height: 30vh;
+        min-height: 250px;
+    }
+
+    .about-hero-content {
+        padding: 0 var(--spacing-md);
+    }
+
+    .about-hero-content h1 {
+        font-size: 1.75rem;
+    }
+
+    .about-hero-subtitle {
+        font-size: 1rem;
     }
 
     .about-stats {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .stat-card {
+        padding: var(--spacing-sm);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
     }
 
     .value-content {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
+    }
+
+    .value-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .value-content p {
+        font-size: 0.9rem;
+    }
+
+    .value-image {
+        min-height: 180px;
+    }
+
+    .about-mission {
+        padding: var(--spacing-md);
+    }
+
+    .about-mission h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-mission p {
+        font-size: 1rem;
+    }
+
+    .about-philosophy h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-lead,
+    .about-description {
+        font-size: 0.9rem;
     }
 }

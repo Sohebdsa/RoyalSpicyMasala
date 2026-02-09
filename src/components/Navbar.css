@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: var(--z-navbar);
+    z-index: 100;
     padding: var(--spacing-md) 0;
     transition: all var(--transition-base);
     background: transparent;
@@ -131,6 +131,8 @@
 .mobile-menu-button {
     display: none;
     flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
     gap: 5px;
     background: transparent;
     border: none;

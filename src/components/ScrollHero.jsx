@@ -11,6 +11,9 @@ const ScrollHero = () => {
   const [currentFrame, setCurrentFrame] = useState(0);
   const currentFrameRef = useRef(0); // Ref to track current frame without dependencies
 
+  // Mobile Detection
+  const [isMobile, setIsMobile] = useState(false);
+
 
 
   // Animation control states
@@ -26,9 +29,15 @@ const ScrollHero = () => {
   // Load all 192 frames sequentially
   const totalFrames = 192;
 
-
-
-
+  // Mobile Detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
 
 
@@ -56,8 +65,12 @@ const ScrollHero = () => {
     currentFrameRef.current = currentFrame;
   }, [currentFrame]);
 
-  // Progressive image loading with priority
+  // Progressive image loading with priority (skip on mobile)
   useEffect(() => {
+    if (isMobile) {
+      setImagesLoaded(true); // Skip loading frames on mobile
+      return;
+    }
 
     const loadImages = async () => {
       const imageArray = new Array(totalFrames);
@@ -124,16 +137,16 @@ const ScrollHero = () => {
     };
 
     loadImages();
-  }, [totalFrames]);
+  }, [isMobile, totalFrames]);
 
   // ... (Rest of animation logic kept mostly same, but guarded by !isMobile check effectively via rendering) ...
 
-  // Start auto-play when images are loaded
+  // Start auto-play when images are loaded (desktop only)
   useEffect(() => {
-    if (imagesLoaded && !userHasInteracted) {
+    if (imagesLoaded && !userHasInteracted && !isMobile) {
       setAutoPlayActive(true);
     }
-  }, [imagesLoaded, userHasInteracted]);
+  }, [imagesLoaded, userHasInteracted, isMobile]);
 
   const renderFrame = (index) => {
     if (!canvasRef.current || !images[index]) return;
@@ -179,8 +192,10 @@ const ScrollHero = () => {
     autoPlayRef.current = autoPlayActive;
   }, [manualPlayActive, autoPlayActive]);
 
-  // User interaction detection - stops auto-play
+  // User interaction detection - stops auto-play (desktop only)
   useEffect(() => {
+    if (isMobile) return;
+
     const handleInteraction = () => {
       if (!userHasInteracted) {
         setScrollStartFrame(currentFrameRef.current);
@@ -200,11 +215,11 @@ const ScrollHero = () => {
       window.removeEventListener('keydown', handleInteraction);
       window.removeEventListener('touchstart', handleInteraction);
     };
-  }, [userHasInteracted]);
+  }, [userHasInteracted, isMobile]);
 
-  // Auto-play animation (1→192 at 24fps)
+  // Auto-play animation (1→192 at 24fps) - Desktop only
   useEffect(() => {
-    if (!autoPlayActive || !imagesLoaded) return;
+    if (!autoPlayActive || !imagesLoaded || isMobile) return;
 
     let animationId;
     let lastTime = 0;
@@ -232,11 +247,11 @@ const ScrollHero = () => {
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
     };
-  }, [autoPlayActive, imagesLoaded, totalFrames]);
+  }, [autoPlayActive, imagesLoaded, totalFrames, isMobile]);
 
-  // Manual play button animation
+  // Manual play button animation - Desktop only
   useEffect(() => {
-    if (!manualPlayActive || !imagesLoaded) return;
+    if (!manualPlayActive || !imagesLoaded || isMobile) return;
 
     let animationId;
     let lastTime = 0;
@@ -264,18 +279,18 @@ const ScrollHero = () => {
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
     };
-  }, [manualPlayActive, imagesLoaded, totalFrames]);
+  }, [manualPlayActive, imagesLoaded, totalFrames, isMobile]);
 
   // Render frame when currentFrame changes during auto-play or manual play
   useEffect(() => {
-    if ((autoPlayRef.current || manualPlayRef.current) && imagesLoaded) {
+    if ((autoPlayRef.current || manualPlayRef.current) && imagesLoaded && !isMobile) {
       renderFrame(currentFrame);
     }
-  }, [currentFrame, imagesLoaded]);
+  }, [currentFrame, imagesLoaded, isMobile]);
 
-  // Scroll-based frame updates
+  // Scroll-based frame updates - Desktop only
   useEffect(() => {
-    if (!imagesLoaded || !canvasRef.current) return;
+    if (!imagesLoaded || !canvasRef.current || isMobile) return;
     if (autoPlayActive || manualPlayActive) return;
 
     const unsubscribe = frameIndex.on('change', (latest) => {
@@ -288,16 +303,16 @@ const ScrollHero = () => {
 
     renderFrame(currentFrame);
     return () => unsubscribe();
-  }, [imagesLoaded, frameIndex, images, autoPlayActive, manualPlayActive, playbackComplete]);
+  }, [imagesLoaded, frameIndex, images, autoPlayActive, manualPlayActive, playbackComplete, isMobile]);
 
-  // Handle Resize
+  // Handle Resize - Desktop only
   useEffect(() => {
     const handleResize = () => {
-      if (imagesLoaded) renderFrame(currentFrame);
+      if (imagesLoaded && !isMobile) renderFrame(currentFrame);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [imagesLoaded, currentFrame]);
+  }, [imagesLoaded, currentFrame, isMobile]);
 
   // Play button handler - always plays once from start
   const handlePlayClick = () => {
@@ -315,30 +330,45 @@ const ScrollHero = () => {
     <div ref={containerRef} className="scroll-hero-container" id="home">
       <Navbar />
       <div className="hero-section">
-        {/* The Animated Canvas Background */}
-        <canvas ref={canvasRef} className="hero-canvas" />
-
-        {/* Loading Spinner */}
-        {!imagesLoaded && (
-          <div className="loading-overlay">
-            <div className="loading-spinner"></div>
-            <p>Preparing your experience...</p>
+        {isMobile ? (
+          // Mobile View - Static Hero Image
+          <div className="mobile-hero-container">
+            <img
+              src="/Heroimg/mobileView/h1.jpeg"
+              alt="Royal Spicy Masala Hero"
+              className="mobile-hero-image"
+              loading="eager"
+            />
           </div>
+        ) : (
+          // Desktop View - Canvas Animation
+          <>
+            {/* The Animated Canvas Background */}
+            <canvas ref={canvasRef} className="hero-canvas" />
+
+            {/* Loading Spinner */}
+            {!imagesLoaded && (
+              <div className="loading-overlay">
+                <div className="loading-spinner"></div>
+                <p>Preparing your experience...</p>
+              </div>
+            )}
+
+            {/* Content Overlay Layer */}
+            <div className="scroll-content-layer">
+
+            </div>
+
+            {/* Play Button - Plays animation once from start */}
+            <button
+              className="play-btn"
+              onClick={handlePlayClick}
+              title="Play Animation (24fps)"
+            >
+              ▶
+            </button>
+          </>
         )}
-
-        {/* Content Overlay Layer */}
-        <div className="scroll-content-layer">
-
-        </div>
-
-        {/* Play Button - Plays animation once from start */}
-        <button
-          className="play-btn"
-          onClick={handlePlayClick}
-          title="Play Animation (24fps)"
-        >
-          ▶
-        </button>
       </div>
     </div>
   );

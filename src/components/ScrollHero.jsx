@@ -11,18 +11,7 @@ const ScrollHero = () => {
   const [currentFrame, setCurrentFrame] = useState(0);
   const currentFrameRef = useRef(0); // Ref to track current frame without dependencies
 
-  // Mobile Slider State
-  const [isMobile, setIsMobile] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isSliderPlaying, setIsSliderPlaying] = useState(true);
 
-  const sliderImages = [
-    '/webpHero/ezgif-frame-001.webp',
-    '/webpHero/ezgif-frame-048.webp',
-    '/webpHero/ezgif-frame-096.webp',
-    '/webpHero/ezgif-frame-144.webp',
-    '/webpHero/ezgif-frame-190.webp'
-  ];
 
   // Animation control states
   const [autoPlayActive, setAutoPlayActive] = useState(false);
@@ -37,40 +26,11 @@ const ScrollHero = () => {
   // Load all 192 frames sequentially
   const totalFrames = 192;
 
-  // Mobile Detection
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
-  // Preload mobile slider images
-  useEffect(() => {
-    if (isMobile) {
-      sliderImages.forEach((src) => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.type = 'image/webp';
-        link.href = src;
-        document.head.appendChild(link);
-      });
-    }
-  }, [isMobile]);
 
-  // Mobile Slider Auto-play
-  useEffect(() => {
-    let interval;
-    if (isMobile && isSliderPlaying) {
-      interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-      }, 3000); // Change slide every 3 seconds
-    }
-    return () => clearInterval(interval);
-  }, [isMobile, isSliderPlaying]);
+
+
+
 
   // Track scroll progress
   const { scrollYProgress } = useScroll({
@@ -96,12 +56,8 @@ const ScrollHero = () => {
     currentFrameRef.current = currentFrame;
   }, [currentFrame]);
 
-  // Progressive image loading with priority (Only on desktop)
+  // Progressive image loading with priority
   useEffect(() => {
-    if (isMobile) {
-      setImagesLoaded(true); // Skip loading large sequence on mobile
-      return;
-    }
 
     const loadImages = async () => {
       const imageArray = new Array(totalFrames);
@@ -168,16 +124,16 @@ const ScrollHero = () => {
     };
 
     loadImages();
-  }, [isMobile, totalFrames]);
+  }, [totalFrames]);
 
   // ... (Rest of animation logic kept mostly same, but guarded by !isMobile check effectively via rendering) ...
 
   // Start auto-play when images are loaded
   useEffect(() => {
-    if (imagesLoaded && !userHasInteracted && !isMobile) {
+    if (imagesLoaded && !userHasInteracted) {
       setAutoPlayActive(true);
     }
-  }, [imagesLoaded, userHasInteracted, isMobile]);
+  }, [imagesLoaded, userHasInteracted]);
 
   const renderFrame = (index) => {
     if (!canvasRef.current || !images[index]) return;
@@ -226,7 +182,7 @@ const ScrollHero = () => {
   // User interaction detection - stops auto-play
   useEffect(() => {
     const handleInteraction = () => {
-      if (!userHasInteracted && !isMobile) {
+      if (!userHasInteracted) {
         setScrollStartFrame(currentFrameRef.current);
         setUserHasInteracted(true);
         setAutoPlayActive(false);
@@ -244,11 +200,11 @@ const ScrollHero = () => {
       window.removeEventListener('keydown', handleInteraction);
       window.removeEventListener('touchstart', handleInteraction);
     };
-  }, [userHasInteracted, isMobile]);
+  }, [userHasInteracted]);
 
-  // Auto-play animation (1→192 at 24fps) - Only desktop
+  // Auto-play animation (1→192 at 24fps)
   useEffect(() => {
-    if (!autoPlayActive || !imagesLoaded || isMobile) return;
+    if (!autoPlayActive || !imagesLoaded) return;
 
     let animationId;
     let lastTime = 0;
@@ -276,11 +232,11 @@ const ScrollHero = () => {
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
     };
-  }, [autoPlayActive, imagesLoaded, totalFrames, isMobile]);
+  }, [autoPlayActive, imagesLoaded, totalFrames]);
 
-  // Manual play button animation - Only desktop
+  // Manual play button animation
   useEffect(() => {
-    if (!manualPlayActive || !imagesLoaded || isMobile) return;
+    if (!manualPlayActive || !imagesLoaded) return;
 
     let animationId;
     let lastTime = 0;
@@ -308,18 +264,18 @@ const ScrollHero = () => {
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
     };
-  }, [manualPlayActive, imagesLoaded, totalFrames, isMobile]);
+  }, [manualPlayActive, imagesLoaded, totalFrames]);
 
   // Render frame when currentFrame changes during auto-play or manual play
   useEffect(() => {
-    if ((autoPlayRef.current || manualPlayRef.current) && imagesLoaded && !isMobile) {
+    if ((autoPlayRef.current || manualPlayRef.current) && imagesLoaded) {
       renderFrame(currentFrame);
     }
-  }, [currentFrame, imagesLoaded, isMobile]);
+  }, [currentFrame, imagesLoaded]);
 
   // Scroll-based frame updates
   useEffect(() => {
-    if (!imagesLoaded || !canvasRef.current || isMobile) return;
+    if (!imagesLoaded || !canvasRef.current) return;
     if (autoPlayActive || manualPlayActive) return;
 
     const unsubscribe = frameIndex.on('change', (latest) => {
@@ -332,16 +288,16 @@ const ScrollHero = () => {
 
     renderFrame(currentFrame);
     return () => unsubscribe();
-  }, [imagesLoaded, frameIndex, images, autoPlayActive, manualPlayActive, playbackComplete, isMobile]);
+  }, [imagesLoaded, frameIndex, images, autoPlayActive, manualPlayActive, playbackComplete]);
 
   // Handle Resize
   useEffect(() => {
     const handleResize = () => {
-      if (imagesLoaded && !isMobile) renderFrame(currentFrame);
+      if (imagesLoaded) renderFrame(currentFrame);
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [imagesLoaded, currentFrame, isMobile]);
+  }, [imagesLoaded, currentFrame]);
 
   // Play button handler - always plays once from start
   const handlePlayClick = () => {
@@ -353,72 +309,36 @@ const ScrollHero = () => {
     setManualPlayActive(true);
   };
 
-  const handleSliderPlayPause = () => {
-    setIsSliderPlaying(!isSliderPlaying);
-  };
+
 
   return (
-    <div ref={containerRef} className={`scroll-hero-container ${isMobile ? 'mobile-slider-mode' : ''}`} id="home">
+    <div ref={containerRef} className="scroll-hero-container" id="home">
       <Navbar />
       <div className="hero-section">
+        {/* The Animated Canvas Background */}
+        <canvas ref={canvasRef} className="hero-canvas" />
 
-        {isMobile ? (
-          // --- Mobile Slider View ---
-          <div className="mobile-slider-container">
-            <img
-              src={sliderImages[currentSlide]}
-              alt={`Slide ${currentSlide + 1}`}
-              className="mobile-slider-image"
-              loading="eager"
-              decoding="async"
-            />
-
-            <div className="mobile-slider-controls">
-              {/* <button className="slider-play-btn" onClick={handleSliderPlayPause}>
-                {isSliderPlaying ? '❚❚' : '▶'}
-              </button> */}
-
-              <div className="slider-dots">
-                {sliderImages.map((_, index) => (
-                  <span
-                    key={index}
-                    className={`slider-dot ${index === currentSlide ? 'active' : ''}`}
-                    onClick={() => setCurrentSlide(index)}
-                  />
-                ))}
-              </div>
-            </div>
+        {/* Loading Spinner */}
+        {!imagesLoaded && (
+          <div className="loading-overlay">
+            <div className="loading-spinner"></div>
+            <p>Preparing your experience...</p>
           </div>
-        ) : (
-          // --- Desktop Canvas View ---
-          <>
-            {/* The Animated Canvas Background */}
-            <canvas ref={canvasRef} className="hero-canvas" />
-
-            {/* Loading Spinner */}
-            {!imagesLoaded && (
-              <div className="loading-overlay">
-                <div className="loading-spinner"></div>
-                <p>Preparing your experience...</p>
-              </div>
-            )}
-
-            {/* Content Overlay Layer */}
-            <div className="scroll-content-layer">
-
-            </div>
-
-            {/* Play Button - Plays animation once from start */}
-            <button
-              className="play-btn"
-              onClick={handlePlayClick}
-              title="Play Animation (24fps)"
-            >
-              ▶
-            </button>
-          </>
         )}
 
+        {/* Content Overlay Layer */}
+        <div className="scroll-content-layer">
+
+        </div>
+
+        {/* Play Button - Plays animation once from start */}
+        <button
+          className="play-btn"
+          onClick={handlePlayClick}
+          title="Play Animation (24fps)"
+        >
+          ▶
+        </button>
       </div>
     </div>
   );

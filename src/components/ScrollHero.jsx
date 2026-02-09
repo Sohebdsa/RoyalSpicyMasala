@@ -331,17 +331,17 @@ const ScrollHero = () => {
       <Navbar />
       <div className="hero-section">
         {isMobile ? (
-          // Mobile View - Static Hero Image
+          // Mobile View - Static Hero Imag
           <div className="mobile-hero-container">
             <img
-              src="/Heroimg/mobileView/h1.jpeg"
+              src="/Heroimg/mobileView/h1.webp"
               alt="Royal Spicy Masala Hero"
               className="mobile-hero-image"
               loading="eager"
             />
             {/* Brand Overlay */}
             <div className="mobile-hero-brand">
-              <h1 className="mobile-brand-heading">Royal Spicy </h1>
+              <h1 className="mobile-brand-heading">Royal Spicy</h1>
               <h1 className="mobile-brand-heading-2">Masala</h1>
               <p className="mobile-brand-tagline">Authentic Flavors, Premium Quality</p>
             </div>

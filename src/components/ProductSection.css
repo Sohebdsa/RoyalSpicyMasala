@@ -33,7 +33,7 @@
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--spacing-xl);
     padding: var(--spacing-md) 0;
 }
@@ -43,6 +43,10 @@
     .content-wrapper {
         max-width: 100%;
         padding: 0 var(--spacing-md);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 2fr));
     }
 }
 
@@ -63,7 +67,7 @@
 
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-sm);
+        gap: var(--spacing-md);
         padding: var(--spacing-sm) 0;
     }
 }
@@ -83,5 +87,11 @@
 
     .content-wrapper>p {
         font-size: 0.9rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm) 0;
     }
 }

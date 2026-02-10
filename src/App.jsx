@@ -6,6 +6,7 @@ import AboutSection from './components/AboutSection'
 import ContactSection from "./components/Contactsection";
 import Footer from './components/Footer'
 import LocationSection from './components/LocationSection'
+import FloatingActionButton from './components/FloatingActionButton'
 
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
@@ -109,6 +110,9 @@ function App() {
 
             {/* Footer */}
             <Footer />
+
+            {/* Floating Action Button */}
+            <FloatingActionButton />
 
             {/* Speed Insights Tracking */}
             <SpeedInsights />

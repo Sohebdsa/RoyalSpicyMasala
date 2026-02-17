@@ -334,7 +334,7 @@ const ScrollHero = () => {
           // Mobile View - Static Hero Imag
           <div className="mobile-hero-container">
             <img
-              src="/Heroimg/mobileView/h1.webp"
+              src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319032/h1_tcy2gz.webp"
               alt="Royal Spicy Masala Hero"
               className="mobile-hero-image"
               loading="eager"

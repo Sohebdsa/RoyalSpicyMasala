@@ -69,7 +69,7 @@ export default function AboutSection() {
 
                     <div className="value-card value-card-reverse">
                         <div className="value-image">
-                            <img src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319724/product_diversity_qljw8c.jpg" alt="Product Diversity" />
+                            <img src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319723/product_diversity_bp8opd.jpg" alt="Product Diversity" />
                         </div>
                         <div className="value-content">
                             <h3>🎯 Comprehensive Range</h3>

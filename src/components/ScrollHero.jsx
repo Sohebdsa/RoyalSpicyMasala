@@ -14,6 +14,9 @@ const ScrollHero = () => {
   // Mobile Detection
   const [isMobile, setIsMobile] = useState(false);
 
+  // Mobile Image Loading State
+  const [mobileImageLoaded, setMobileImageLoaded] = useState(false);
+  const [mobileImageError, setMobileImageError] = useState(false);
 
 
   // Animation control states
@@ -331,15 +334,44 @@ const ScrollHero = () => {
       <Navbar />
       <div className="hero-section">
         {isMobile ? (
-          // Mobile View - Static Hero Imag
+          // Mobile View - Static Hero Image with Loader
           <div className="mobile-hero-container">
+            {/* Loading Overlay - Shows while image is loading */}
+            {!mobileImageLoaded && !mobileImageError && (
+              <div className="mobile-loading-overlay">
+                <div className="loading-spinner"></div>
+                <p>Loading...</p>
+              </div>
+            )}
+
+            {/* Error State - Shows if image fails to load */}
+            {mobileImageError && (
+              <div className="mobile-error-overlay">
+                <p>Failed to load image</p>
+                <button 
+                  className="retry-btn"
+                  onClick={() => {
+                    setMobileImageError(false);
+                    setMobileImageLoaded(false);
+                  }}
+                >
+                  Retry
+                </button>
+              </div>
+            )}
+
+            {/* Hero Image - Hidden until loaded to prevent partial loading display */}
             <img
               src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319032/h1_tcy2gz.webp"
               alt="Royal Spicy Masala Hero"
-              className="mobile-hero-image"
+              className={`mobile-hero-image ${mobileImageLoaded ? 'loaded' : 'loading'}`}
               loading="eager"
+              onLoad={() => setMobileImageLoaded(true)}
+              onError={() => setMobileImageError(true)}
+              style={{ opacity: mobileImageLoaded ? 1 : 0 }}
             />
-            {/* Brand Overlay */}
+
+            {/* Brand Overlay - Always visible on top */}
             <div className="mobile-hero-brand">
               <h1 className="mobile-brand-heading">Royal Spicy</h1>
               <h1 className="mobile-brand-heading-2">Masala</h1>

@@ -2,7 +2,7 @@
 
 A modern, responsive e-commerce website for premium spices, groceries, and wholesale distribution services.
 
-![Royal Spicy Masala Banner](./public/screenshots/banner.png)
+![Royal Spicy Masala Banner](./public/screenshots/Home.png)
 
 ## About The Project
 

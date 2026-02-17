@@ -56,7 +56,7 @@ export default function AboutSection() {
                 <div className="about-values">
                     <div className="value-card">
                         <div className="value-image">
-                            <img src="/AboutSectionImg/farm_fresh_quality.png" alt="Farm Fresh Quality" />
+                            <img src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319723/farm_fresh_quality_n96pmw.jpg" />
                         </div>
                         <div className="value-content">
                             <h3>🌾 Farm-Fresh Quality</h3>
@@ -69,7 +69,7 @@ export default function AboutSection() {
 
                     <div className="value-card value-card-reverse">
                         <div className="value-image">
-                            <img src="/AboutSectionImg/product_diversity.png" alt="Product Diversity" />
+                            <img src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319724/product_diversity_qljw8c.jpg" alt="Product Diversity" />
                         </div>
                         <div className="value-content">
                             <h3>🎯 Comprehensive Range</h3>
@@ -82,7 +82,7 @@ export default function AboutSection() {
 
                     <div className="value-card">
                         <div className="value-image">
-                            <img src="/AboutSectionImg/distribution_network.png" alt="Distribution Network" />
+                            <img src="https://res.cloudinary.com/datkxm0yf/image/upload/v1771319725/distribution_network_vwq2bn.jpg" />
                         </div>
                         <div className="value-content">
                             <h3>🚚 Robust Distribution</h3>

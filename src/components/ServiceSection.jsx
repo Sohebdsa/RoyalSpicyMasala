@@ -6,28 +6,28 @@ export default function ServiceSection() {
             id: 1,
             title: "DryFruits",
             description: "Premium-grade dry fruits sourced from trusted farms and suppliers, ideal for retail, gifting, and culinary use.",
-            image: "/OurServicesImg/dryfruits.jpeg",
+            image: "https://res.cloudinary.com/datkxm0yf/image/upload/v1771319480/dryfruits_djikiu.jpg",
             features: [" Almonds, Cashews, Pistachios", "Raisins, Dates, Figs", "Walnuts, Apricots, Mixed Dry Fruits"]
         },
         {
             id: 2,
             title: "Spices & Masala",
             description: "Authentic, lab-tested spices and custom masala blends that elevate flavor and meet international quality standards.",
-            image: "/OurServicesImg/masla.jpeg",
+            image: "https://res.cloudinary.com/datkxm0yf/image/upload/v1771319477/masla_dbjfif.jpg",
             features: [" Whole & ground spices (Haldi, Jeera, Mirchi)", "Custom masala blends", "Purity guarantee"]
         },
         {
             id: 3,
             title: "Oils & Ghee",
             description: "Cold-pressed oils and pure ghee for traditional cooking and modern health-conscious kitchens.",
-            image: "/OurServicesImg/oils.jpeg",
+            image: "https://res.cloudinary.com/datkxm0yf/image/upload/v1771319478/oils_khbtlw.jpg",
             features: ["Mustard, Groundnut, Coconut oils", "Pure ghee", "Nationwide coverage", "Available in retail and bulk formats"]
         },
         {
             id: 4,
             title: "Grains & Rice",
             description: "Premium-grade grains and rice sourced from trusted farms and suppliers, ideal for retail, gifting, and culinary use.",
-            image: "/OurServicesImg/grains.jpeg",
+            image: "https://res.cloudinary.com/datkxm0yf/image/upload/v1771319476/grains_u3e37u.jpg",
             features: ["Basmati, Sona Masoori, Idli Rice", "Wheat, Pulses, Millets", "Custom packaging options"]
         }
     ];

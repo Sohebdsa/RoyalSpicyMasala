@@ -39,19 +39,16 @@ Royal Spicy Masala is a premium spice and grocery business offering high-quality
 Add your website screenshots below:
 
 ### Home Page
-![Home Page](./public/screenshots/home.png)
+![Home Page](./public/screenshots/Home.png)
 
 ### Products Page
-![Products Page](./public/screenshots/products.png)
-
-### About Us
-![About Us](./public/screenshots/about.png)
+![Products Page](./public/screenshots/Product.png)
 
 ### Services
 ![Services](./public/screenshots/services.png)
 
 ### Contact
-![Contact](./public/screenshots/contact.png)
+![Contact](./public/screenshots/Contact.png)
 
 ---
 

@@ -1,5 +1,4 @@
 # Royal Spicy Masala 
-
 A modern, responsive e-commerce website for premium spices, groceries, and wholesale distribution services.
 
 ![Royal Spicy Masala](./public/screenshots/Home.png)
